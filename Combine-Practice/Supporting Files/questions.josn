@@ -1,0 +1,126 @@
+[
+	{
+		"id" : 0,
+		"title" : "Palindrome String",
+		"description" : "",
+		"example_code" : "",
+
+		"difficulty" : "easy",
+		"categories" : ["strings", "arrays", "two_pointer"],
+
+		"algorithmOptions" : [
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			},
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			},
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			}
+		],
+		"correct_answer" : 0,
+		"status" : "not_started"
+	},
+	{
+		"id" : 0,
+		"title" : "Palindrome String",
+		"description" : "",
+		"example_code" : "",
+
+		"difficulty" : "easy",
+		"categories" : ["strings", "arrays", "two_pointer"],
+
+		"algorithmOptions" : [
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			},
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			},
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			}
+		],
+		"correct_answer" : 0,
+		"status" : "not_started"
+	},
+	{
+		"id" : 0,
+		"title" : "Palindrome String",
+		"description" : "",
+		"example_code" : "",
+
+		"difficulty" : "easy",
+		"categories" : ["strings", "arrays", "two_pointer"],
+
+		"algorithmOptions" : [
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			},
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			},
+			{
+				"id" : 0,
+				"title" : "",
+				"description" : "",
+				"code" : "",
+				"space_complexity" : "",
+				"time_complexity" : ""
+				"categories" : ["strings", "arrays", "two_pointer"]
+			}
+		],
+		"correct_answer" : 0,
+		"status" : "not_started"
+	}
+
+]
