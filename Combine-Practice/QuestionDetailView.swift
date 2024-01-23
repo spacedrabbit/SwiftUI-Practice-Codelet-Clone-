@@ -16,7 +16,7 @@ struct QuestionDetailView: View {
 	
     var body: some View {
 		VStack {
-			VStack(alignment: .leading, spacing: 20.0) {
+			CardView {
 				QuestionDetailTitleView(question)
 				
 				Text(question.description)
@@ -33,10 +33,8 @@ struct QuestionDetailView: View {
 					.font(.caption.monospaced())
 					.cornerRadius(8.0)
 					.multilineTextAlignment(.leading)
-					
 			}
-			.cardViewStyle(color: .red)
-			
+
 			Spacer(minLength: 20.0)
 			
 			Divider()
@@ -45,7 +43,7 @@ struct QuestionDetailView: View {
 			
 			Spacer()
 			
-			VStack {
+			CardView {
 				HStack {
 					Text(question.algorithmOptions[0].title)
 					
@@ -63,6 +61,20 @@ struct QuestionDetailView: View {
 		.navigationTitle(question.title)
 		.navigationBarTitleDisplayMode(.inline)
     }
+}
+
+struct CardView<Content: View>: View {
+	@ViewBuilder var content: () -> Content
+	@State var backgroundColor: Color = .white
+	
+	var body: some View {
+		VStack {
+			VStack(alignment: .leading, spacing: 20.0) {
+				content()
+			}
+		}
+		.cardViewStyle(color: backgroundColor)
+	}
 }
 
 extension View {
