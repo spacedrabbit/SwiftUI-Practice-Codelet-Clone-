@@ -13,7 +13,7 @@ struct HomeTabView: View {
 		TabView {
 			NavigationStack {
 				QuestionList()
-					.toolbar {t
+					.toolbar {
 						ToolbarItem(placement: .navigationBarLeading) {
 							Button() {
 								print("add")

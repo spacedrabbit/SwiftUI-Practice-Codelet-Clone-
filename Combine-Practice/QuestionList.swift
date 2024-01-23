@@ -24,7 +24,7 @@ struct QuestionList: View {
 			.navigationTitle("Question List")
 			.navigationBarTitleDisplayMode(.inline)
 			.navigationDestination(for: QuestionCard.self) { card in
-				Text("\(card.title)")
+				QuestionDetailView(Question.example)
 			}
 		
 	}
