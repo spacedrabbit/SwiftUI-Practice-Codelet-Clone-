@@ -43,29 +43,46 @@ struct QuestionDetailView: View {
 			
 			Spacer(minLength: 20.0)
 			
-			CardView_V3 {
-				HStack {
-					Text(question.algorithmOptions[0].title)
+			GeometryReader { outerView in
+				ScrollView(.horizontal) {
 					
-					Spacer()
-					
-					Button {
-						print("Expand")
-					} label: {
-						Image(systemName: "arrow.up.left.and.arrow.down.right")
-							.padding(4)
-							.clipShape(RoundedRectangle(cornerRadius: 4))
-							.overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.blue, lineWidth: 1))
+					LazyHStack(spacing: 12.0) {
+						Spacer(minLength: 20.0)
+						ForEach(question.algorithmOptions) { option in
+							
+							CardViewButtoned {
+								HStack {
+									Text(option.title)
+									
+									Spacer()
+									Button {
+										print("Expand")
+									} label: {
+										Image(systemName: "arrow.up.left.and.arrow.down.right")
+											.padding(4)
+											.clipShape(RoundedRectangle(cornerRadius: 4))
+											.overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.blue, lineWidth: 1))
+									}
+								}
+								Text(option.description)
+							}
+							.frame(minWidth: outerView.size.width, maxHeight: outerView.size.height - 10.0)
+							
+						}
 					}
+					.padding(.horizontal, -20)
 				}
-			
-				Text(question.algorithmOptions[0].description)
+				.scrollIndicators(.hidden)
+				
 			}
 			
+			
 		}
+		.coordinateSpace(name: "outerVStack")
 		.padding(EdgeInsets(top: 20.0, leading: 20.0, bottom: 20.0, trailing: 20.0))
 		.navigationTitle(question.title)
 		.navigationBarTitleDisplayMode(.inline)
+		
     }
 }
 
@@ -73,8 +90,6 @@ struct QuestionDetailView: View {
 
 struct QuestionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		NavigationStack {
-			QuestionDetailView(Question.example)
-		}
+			QuestionDetailView(Question.makeExample())
     }
 }

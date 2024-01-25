@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct QuestionList: View {
+struct QuestionListView: View {
 	private let questionCards: [QuestionCard] = Bundle.main.decode([QuestionCard].self, from: "question_cards.json")
-	//private let questions: [Question] = Bundle.main.decode([Question].self, from: "questions.json")
+	private let questions: [Question] = Bundle.main.decode([Question].self, from: "questions.json")
 	
 	@State private var addQuestionAlertVisible = false
 	
@@ -24,10 +24,13 @@ struct QuestionList: View {
 			.navigationTitle("Question List")
 			.navigationBarTitleDisplayMode(.inline)
 			.navigationDestination(for: QuestionCard.self) { card in
-				QuestionDetailView(Question.example)
+				let idx = questions.firstIndex(where: { $0.id == card.questionId }) ?? 0
+				QuestionDetailView(questions[idx])
+					.toolbar(.hidden, for: .tabBar)
 			}
-		
 	}
+	
+	
 	
 }
 
@@ -99,12 +102,11 @@ struct ImageLastLabelStyle: LabelStyle {
 }
 
 struct QuestionList_Previews: PreviewProvider {
-	// let questionCards: [QuestionCard] = Bundle.main.decode([QuestionCard].self, from: "sample.json")
 	
 	static var previews: some View {
 		TabView {
 			NavigationStack {
-				QuestionList()
+				QuestionListView()
 			}
 		}
 		.tabItem {

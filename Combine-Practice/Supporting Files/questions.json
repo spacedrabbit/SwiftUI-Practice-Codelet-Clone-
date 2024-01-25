@@ -1,126 +1,167 @@
 [
 	{
-		"id" : 0,
-		"title" : "Palindrome String",
-		"description" : "",
-		"example_code" : "",
-
-		"difficulty" : "easy",
-		"categories" : ["strings", "arrays", "two_pointer"],
-
-		"algorithmOptions" : [
+		"id": 0,
+		"title": "Palindrome String",
+		"description": "",
+		"example_code": "",
+		"difficulty": "easy",
+		"categories": [
+			"strings",
+			"arrays",
+			"two_pointer"
+		],
+		"algorithmOptions": [
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 0,
+				"title": "First Q",
+				"description": "",
+				"code": "",
+				"space_complexity": "logarithmic",
+				"time_complexity": "logarithmic",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			},
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 1,
+				"title": "",
+				"description": "",
+				"code": "",
+				"space_complexity": "exponential",
+				"time_complexity": "quasilinear",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			},
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 2,
+				"title": "",
+				"description": "",
+				"code": "",
+				"space_complexity": "quasilinear",
+				"time_complexity": "constant",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			}
 		],
-		"correct_answer" : 0,
-		"status" : "not_started"
+		"correct_answer": 0,
+		"status": "not_started"
 	},
 	{
-		"id" : 0,
-		"title" : "Palindrome String",
-		"description" : "",
-		"example_code" : "",
-
-		"difficulty" : "easy",
-		"categories" : ["strings", "arrays", "two_pointer"],
-
-		"algorithmOptions" : [
+		"id": 1,
+		"title": "Palindrome String",
+		"description": "",
+		"example_code": "",
+		"difficulty": "easy",
+		"categories": [
+			"strings",
+			"arrays",
+			"two_pointer"
+		],
+		"algorithmOptions": [
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 0,
+				"title": "Second Q",
+				"description": "",
+				"code": "",
+				"space_complexity": "logarithmic",
+				"time_complexity": "logarithmic",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			},
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 1,
+				"title": "",
+				"description": "",
+				"code": "",
+				"space_complexity": "exponential",
+				"time_complexity": "quasilinear",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			},
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 2,
+				"title": "",
+				"description": "",
+				"code": "",
+				"space_complexity": "quasilinear",
+				"time_complexity": "constant",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			}
 		],
-		"correct_answer" : 0,
-		"status" : "not_started"
+		"correct_answer": 0,
+		"status": "not_started"
 	},
 	{
-		"id" : 0,
-		"title" : "Palindrome String",
-		"description" : "",
-		"example_code" : "",
-
-		"difficulty" : "easy",
-		"categories" : ["strings", "arrays", "two_pointer"],
-
-		"algorithmOptions" : [
+		"id": 2,
+		"title": "Palindrome String",
+		"description": "",
+		"example_code": "",
+		"difficulty": "easy",
+		"categories": [
+			"strings",
+			"arrays",
+			"two_pointer"
+		],
+		"algorithmOptions": [
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 0,
+				"title": "Third Q",
+				"description": "",
+				"code": "",
+				"space_complexity": "logarithmic",
+				"time_complexity": "logarithmic",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			},
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 1,
+				"title": "",
+				"description": "",
+				"code": "",
+				"space_complexity": "exponential",
+				"time_complexity": "quasilinear",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			},
 			{
-				"id" : 0,
-				"title" : "",
-				"description" : "",
-				"code" : "",
-				"space_complexity" : "",
-				"time_complexity" : ""
-				"categories" : ["strings", "arrays", "two_pointer"]
+				"id": 2,
+				"title": "",
+				"description": "",
+				"code": "",
+				"space_complexity": "quasilinear",
+				"time_complexity": "constant",
+				"categories": [
+					"strings",
+					"arrays",
+					"two_pointer"
+				]
 			}
 		],
-		"correct_answer" : 0,
-		"status" : "not_started"
+		"correct_answer": 0,
+		"status": "not_started"
 	}
-
 ]
