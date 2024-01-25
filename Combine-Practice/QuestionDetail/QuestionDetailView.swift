@@ -61,26 +61,13 @@ struct QuestionDetailView: View {
 							
 							ForEach(question.algorithmOptions) { option in
 								
-								CardViewButtoned {
-									HStack {
-										Text(option.title)
-										
-										Spacer()
-										Button {
-											print("Expand")
-										} label: {
-											Image(systemName: "arrow.up.left.and.arrow.down.right")
-												.padding(4)
-												.clipShape(RoundedRectangle(cornerRadius: 4))
-												.overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.blue, lineWidth: 1))
-										}
-									}
+								CardViewButtoned(content: {
 									
 									ScrollView {
-										Text(option.description)
+										Text(option.code)
 									}
 									
-								}
+								}, option: option)
 								.frame(minWidth: vStack.frame(in: .global).width, maxWidth: vStack.frame(in: .global).width, minHeight: vStack.size.height * 0.45)
 								
 							}

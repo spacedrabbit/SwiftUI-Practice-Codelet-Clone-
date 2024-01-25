@@ -15,7 +15,7 @@
 				"id": 0,
 				"title": "First Q",
 				"description": "",
-				"code": "",
+				"code": "for _ in (0..<n-1) {\n\tvar start = 0\n\tvar end = arr.count\n\n\twhile start < end {\n\t\tlet lookingAt = arr[start]\n\t\tlet slice = arr[start..<end].prefix(while: { $0 == lookingAt })\n\t\ttemp.append(contentsOf: [slice.count, lookingAt])\n\t\tstart = slice.endIndex\n\t}\n\tarr = temp\n\ttemp = []\n}",
 				"space_complexity": "logarithmic",
 				"time_complexity": "logarithmic",
 				"categories": [

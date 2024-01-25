@@ -10,12 +10,36 @@ import SwiftUI
 struct CardViewButtoned<Content: View>: View {
 	@ViewBuilder var content: () -> Content
 	@State var selected: Bool = false
+	let option: Algorithm
+	
+//	init(_ option: Algorithm) {
+//		self.option = option
+//	}
 	
 	var body: some View {
 		VStack {
+			HStack {
+				Text(option.title)
+				
+				Spacer()
+				Button {
+					print("Expand")
+				} label: {
+					Image(systemName: "arrow.up.left.and.arrow.down.right")
+						.padding(4)
+						.clipShape(RoundedRectangle(cornerRadius: 4))
+						.overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.blue, lineWidth: 1))
+				}
+			}
+			.frame(width: .infinity, height: 60.0)
+			.padding(.horizontal)
+			.background(Rectangle().fill(.red).opacity(0.25))
+			.zIndex(1.0)
+			
 			content()
 				.padding(.horizontal)
 				.padding(.vertical, 12.0)
+				.zIndex(0.1)
 			
 			Spacer(minLength: 0.0)
 			
@@ -38,9 +62,9 @@ struct CardViewButtoned<Content: View>: View {
 struct CardViewButtoned_Previews: PreviewProvider {
     static var previews: some View {
 		VStack(alignment: .leading) {
-			CardViewButtoned {
+			CardViewButtoned(content: {
 				Text("Sample")
-			}
+			}, option: Algorithm.example)
 		}.padding()
 		
     }
