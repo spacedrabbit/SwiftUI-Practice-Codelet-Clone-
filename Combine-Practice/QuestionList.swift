@@ -49,7 +49,7 @@ struct QuestionRow: View {
 						Text(category.label)
 							.font(.caption)
 							.padding(EdgeInsets(top: 4.0, leading: 6.0, bottom: 4.0, trailing: 6.0))
-							.background(Color(red: 237.0 / 255.0, green: 237.0 / 255.0, blue: 237.0 / 255.0))
+							.background(Color.listItemBackground)
 							.cornerRadius(4.0)
 					}
 				}
@@ -63,13 +63,13 @@ struct QuestionRow: View {
 					.font(.caption)
 					.frame(minWidth: 55.0)
 					.padding(EdgeInsets(top: 4.0, leading: 6.0, bottom: 4.0, trailing: 6.0))
-					.background(color(for: questionCard.difficulty))
+					.background(questionCard.difficulty.color)
 					.cornerRadius(4.0)
 					
 				Spacer()
 				
 				Label("\(questionCard.approvalScore)%", systemImage: "hand.thumbsup")
-					.labelStyle(ImageLastLabelStyle())
+					.imageFirstStyle()
 					
 			}
 		}
@@ -77,12 +77,12 @@ struct QuestionRow: View {
 		
 	}
 	
-	private func color(for difficulty: Difficulty) -> Color {
-		switch difficulty {
-		case .easy: return Color(red: 106.0 / 255.0, green: 218.0 / 255.0, blue: 134.0 / 255.0)
-		case .medium: return Color(red: 246.0 / 255.0, green: 226.0 / 255.0, blue: 147.0 / 255.0	)
-		case .hard: return Color(red: 237.0 / 255.0, green: 130.0 / 255.0, blue: 106.0 / 255.0)
-		}
+}
+
+extension Label {
+	
+	func imageFirstStyle() -> some View {
+		labelStyle(ImageLastLabelStyle())
 	}
 	
 }

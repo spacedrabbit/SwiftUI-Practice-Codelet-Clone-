@@ -11,10 +11,6 @@ import SwiftUI
 struct Combine_PracticeApp: App {
     var body: some Scene {
         WindowGroup {
-			let _ = print(JustThreeInts.snatch())
-			let _ = print(JustThreeInts.snatch())
-			let _ = print(JustThreeInts.snatch())
-			let _ = print(JustThreeInts.snatch())
             HomeTabView()
         }
     }

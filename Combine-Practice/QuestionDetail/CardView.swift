@@ -13,40 +13,16 @@ struct CardView<Content: View>: View {
 	
 	var body: some View {
 		VStack {
-			VStack(alignment: .leading, spacing: 20.0) {
-				content()
+			ScrollView {
+				VStack(alignment: .leading, spacing: 20.0) {
+					content()
+				}
 			}
 		}
 		.cardViewStyle(color: backgroundColor)
 	}
 }
 
-struct CardViewButtoned<Content: View>: View {
-	@ViewBuilder var content: () -> Content
-	@State var selected: Bool = false
-	
-	var body: some View {
-		VStack {
-			content()
-				.padding(.horizontal)
-				.padding(.vertical, 12.0)
-			
-			Spacer(minLength: 0.0)
-			
-			Button {
-				selected.toggle()
-			} label: {
-				Text(selected ? "Selected" : "Select")
-			}
-			.frame(maxWidth: .infinity, maxHeight: 52.0)
-			.background(.red)
-			
-		}
-		.background(.white)
-		.clipShape(RoundedRectangle(cornerRadius: 8.0))
-		.shadow(radius: 4.0)
-	}
-}
 
 extension View {
 	
@@ -75,7 +51,7 @@ struct CardViewModifier: ViewModifier {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
 		VStack(alignment: .center) {
-			CardViewButtoned {
+			CardView {
 				HStack {
 					Text("Hi")
 					Spacer()

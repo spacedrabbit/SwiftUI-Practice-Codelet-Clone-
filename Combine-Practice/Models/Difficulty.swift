@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Difficulty: String, Codable {
    case easy, medium, hard
@@ -18,4 +19,16 @@ enum Difficulty: String, Codable {
 	   }
    }
 
+}
+
+extension Difficulty {
+	
+	var color: Color {
+		switch self {
+		case .easy: return .easyGreen
+		case .medium: return .mediumYellow
+		case .hard: return .hardRed
+		}
+	}
+	
 }

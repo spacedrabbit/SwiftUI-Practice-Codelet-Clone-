@@ -41,6 +41,11 @@ struct JustThreeInts {
 
 extension Algorithm {
 	
-	static let example = Algorithm(id: JustThreeInts.snatch()!, title: "Approach 0", description: "Use two pointers, one at the first index of the string and one at the end. Compare the values at both pointers. If they are not equal, return false. Increase the first pointer and decrease the second pointer. When the first pointer is greater than the second pointer, return true", code: "", timeComplexity: .linear, spaceComplexity: .constant, categories: [.twoPointer, .strings])
+	static let example = Algorithm(id: 0, title: "Approach 0", description: "Use two pointers, one at the first index of the string and one at the end. Compare the values at both pointers. If they are not equal, return false. Increase the first pointer and decrease the second pointer. When the first pointer is greater than the second pointer, return true", code: "", timeComplexity: .linear, spaceComplexity: .constant, categories: [.twoPointer, .strings])
+	
+	static func makeExample() -> Algorithm {
+		Algorithm(id: (0..<1000).randomElement()!, title: "Approach 0", description: "Use two pointers, one at the first index of the string and one at the end. Compare the values at both pointers. If they are not equal, return false. Increase the first pointer and decrease the second pointer. When the first pointer is greater than the second pointer, return true", code: "", timeComplexity: .linear, spaceComplexity: .constant, categories: [.twoPointer, .strings])
+	}
+	
 }
  

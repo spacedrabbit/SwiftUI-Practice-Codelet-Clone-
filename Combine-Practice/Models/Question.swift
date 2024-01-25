@@ -68,7 +68,7 @@ extension Question {
 						exampleCode: "1)s = 'Apple', returns false\n2)s = 'level', returns true",
 						difficulty: .easy,
 						categories: [.strings, .twoPointer],
-						algoOptions: [Algorithm.example, Algorithm.example, Algorithm.example],
+						algoOptions: [Algorithm.makeExample(), Algorithm.makeExample(), Algorithm.makeExample()],
 						correctAnswer: 0, status: .notStarted)
 	}
 	
