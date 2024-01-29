@@ -17,6 +17,8 @@ extension UIScrollView {
 }
 
 struct QuestionDetailView: View {
+	@State var selectedOptionId: Int = -1
+	static let invalidOptionId: Int = -1
 	private let question: Question
 	
 	init(_ question: Question) {
@@ -61,13 +63,7 @@ struct QuestionDetailView: View {
 							
 							ForEach(question.algorithmOptions) { option in
 								
-								CardViewButtoned(content: {
-									
-									ScrollView {
-										Text(option.code)
-									}
-									
-								}, option: option)
+								CardViewButtoned(option: option, selectedOptionId: $selectedOptionId)
 								.frame(minWidth: vStack.frame(in: .global).width, maxWidth: vStack.frame(in: .global).width, minHeight: vStack.size.height * 0.45)
 								
 							}
