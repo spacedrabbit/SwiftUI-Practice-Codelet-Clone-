@@ -19,6 +19,11 @@ extension UIScrollView {
 struct QuestionDetailView: View {
 	@State var selectedOptionId: Int = -1
 	static let invalidOptionId: Int = -1
+	
+	private var optionSelected: Bool {
+		return selectedOptionId != Self.invalidOptionId
+	}
+	
 	private let question: Question
 	
 	init(_ question: Question) {
@@ -79,12 +84,22 @@ struct QuestionDetailView: View {
 				}
 				
 			}
-			
+			.padding(EdgeInsets(top: 20.0, leading: 20.0, bottom: 20.0, trailing: 20.0))
+			.safeAreaInset(edge: .bottom) {
+				// this .safeAreaInset allows you to place items in.. you guessed it.. the safe area
+				Button {
+					print("Hi")
+				} label: {
+					Text("Continue")
+						.frame(maxWidth: .infinity, maxHeight: 52.0) // aparently you need to add the frame to the Text in order for the button's tappable area to match it's size
+						.foregroundStyle(!optionSelected ? Color.disabledButtonForeground : .black)
+						.background(!optionSelected ? Color.disabledButtonBackground : Color.listItemBackground)
+				}
+				.disabled(!optionSelected)
+			}
 		}
-		.padding(EdgeInsets(top: 20.0, leading: 20.0, bottom: 20.0, trailing: 20.0))
 		.navigationTitle(question.title)
 		.navigationBarTitleDisplayMode(.inline)
-		
     }
 }
 

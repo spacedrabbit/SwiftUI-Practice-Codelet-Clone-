@@ -10,8 +10,9 @@ import SwiftUI
 struct CardViewButtoned: View {
 	
 	@Binding var selectedOptionId: Int
-	@State var selected: Bool = false
-	let option: Algorithm
+	private let option: Algorithm
+	
+	private var isSelected: Bool { selectedOptionId == option.id }
 	
 	init(option: Algorithm, selectedOptionId: Binding<Int>) {
 		self.option = option
@@ -51,18 +52,18 @@ struct CardViewButtoned: View {
 				Spacer(minLength: 0.0)
 				
 				Button {
-					if selectedOptionId == option.id {
+					if isSelected {
 						selectedOptionId = QuestionDetailView.invalidOptionId
 					} else {
 						selectedOptionId = option.id
 					}
 				} label: {
-					Text(selectedOptionId == option.id ? "Selected" : "Select")
+					Text(isSelected ? "Selected" : "Select")
 						.frame(maxWidth: .infinity, maxHeight: 52.0) // aparently you need to add the frame to the Text in order for the button's tappable area to match it's size
-						.tint(selectedOptionId == option.id ? .white : .primary)
+						.tint(isSelected ? .white : .primary)
 						
 				}
-				.background(selectedOptionId == option.id ? .blue : .listItemBackground)
+				.background(isSelected ? .blue : .listItemBackground)
 				.zIndex(100.0)
 			}
 			.background(.white)
@@ -76,7 +77,7 @@ struct CardViewButtoned: View {
 struct CardViewButtoned_Previews: PreviewProvider {
     static var previews: some View {
 		VStack(alignment: .leading) {
-			CardViewButtoned(option: Algorithm.example, selectedOptionId: .constant(1))
+			CardViewButtoned(option: Algorithm.example, selectedOptionId: .constant(0))
 				.frame(maxWidth: .infinity, maxHeight: 300.0)
 		}.padding()
 		

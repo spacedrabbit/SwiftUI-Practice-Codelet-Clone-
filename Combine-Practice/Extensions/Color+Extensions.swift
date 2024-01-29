@@ -17,4 +17,7 @@ extension Color {
 	
 	static let listItemBackground = Color(red: 237.0 / 255.0, green: 237.0 / 255.0, blue: 237.0 / 255.0)
 	
+	static let disabledButtonBackground = Color(red: 229.0 / 255.0, green: 230.0 / 255.0, blue: 231.0 / 255.0)
+	
+	static let disabledButtonForeground = Color(red: 157.0 / 255.0, green: 161.0 / 255.0, blue: 165.0 / 255.0)
 }
