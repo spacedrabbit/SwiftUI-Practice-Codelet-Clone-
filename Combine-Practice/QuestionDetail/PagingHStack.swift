@@ -7,22 +7,29 @@
 
 import SwiftUI
 
-struct PagingHStack: View {
-	@State private var currentIndex = 1
+struct PagingHStack<Content: ConfiguredView, Item: Identifiable>: View {
+	@ViewBuilder var content: (Item, Binding<Item.ID>) -> Content
+	@State private var currentIndex = 0
 	@GestureState private var dragOffset: CGFloat = 0.0
-	private var colors = [Color.red, Color.yellow, Color.green, Color.blue]
+	@Binding var selectedItem: Item.ID
+	
+	private var items: [Item]
+
+	init(items: [Item], selectedItem: Binding<Item.ID>, content: @escaping (Item, Binding<Item.ID>) -> Content) {
+		self.content = content
+		self.items = items
+		self._selectedItem = selectedItem
+	}
 	
     var body: some View {
 		GeometryReader { outerContext in
 			HStack(spacing: 0) {
-				ForEach(colors.indices, id: \.self) { colorIdx in
-					
+				ForEach(items.indices, id: \.self) { idx in
 					GeometryReader { innerContext in
-						colors[colorIdx]
+						content(items[idx], $selectedItem)
 					}
 					.padding(.horizontal, 20)
-					.frame(width: outerContext.size.width, height: colorIdx == currentIndex ? 450 : 400)
-					.opacity(colorIdx == currentIndex ? 1.0 : 0.7)
+					.frame(width: outerContext.size.width)
 				}
 			}
 			.frame(width: outerContext.size.width, height: outerContext.size.height, alignment: .leading)
@@ -31,12 +38,13 @@ struct PagingHStack: View {
 			.gesture(
 				DragGesture()
 					.updating(self.$dragOffset, body: { value, state, transaction in
+						print(dragOffset)
 						state = value.translation.width
 					})
 					.onEnded ({ value in
 						let threshold = outerContext.size.width * 0.65
 						var newIndex = Int(-value.translation.width / threshold) + self.currentIndex
-						newIndex = min(max(newIndex, 0), 3) // 3 is the size of the colors array - 1
+						newIndex = min(max(newIndex, 0), items.count - 1) // 3 is the size of the colors array - 1
 						self.currentIndex = newIndex
 					})
 			)
@@ -45,7 +53,11 @@ struct PagingHStack: View {
 }
 
 struct PagingHStack_Previews: PreviewProvider {
+	@State static var sample: Int = -1
+	
     static var previews: some View {
-        PagingHStack()
+		PagingHStack(items: Question.makeExample().algorithmOptions, selectedItem: $sample) { algo, binding  in
+			CardViewButtoned(option: algo, selectedOptionId: binding)
+		}
     }
 }

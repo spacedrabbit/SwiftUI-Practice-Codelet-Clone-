@@ -61,25 +61,11 @@ struct QuestionDetailView: View {
 					
 					Spacer(minLength: 20.0)
 					
-					ScrollView(.horizontal) {
-						LazyHStack(spacing: 12.0) {
-							
-							Color.clear.frame(width: 1.0)
-							
-							ForEach(question.algorithmOptions) { option in
-								
-								CardViewButtoned(option: option, selectedOptionId: $selectedOptionId)
-								.frame(minWidth: vStack.frame(in: .global).width, maxWidth: vStack.frame(in: .global).width, minHeight: vStack.size.height * 0.45)
-							}
-							
-							Color.clear.frame(width: 1.0) // Gives the effect of contentInset, just enough to align the views considering the shadows
-							
-						}
-						.padding(.horizontal, -14.0)
+					PagingHStack(items: question.algorithmOptions, selectedItem: $selectedOptionId) { item, binding in
+						CardViewButtoned(option: item, selectedOptionId: binding)
 					}
-					.frame(width: vStack.size.width, height: vStack.size.height * 0.45)
-					.scrollIndicators(.hidden)
-					
+					.padding(.horizontal, -20.0)
+					.frame(height: vStack.size.height * 0.45)
 				}
 				
 			}

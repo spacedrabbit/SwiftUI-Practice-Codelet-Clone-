@@ -6,10 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 
-struct CardViewButtoned: View {
+protocol ConfiguredView: View {
+	associatedtype ConfigureItem: Identifiable
 	
+	init(option: ConfigureItem, selectedOptionId: Binding<ConfigureItem.ID>)
+}
+
+struct CardViewButtoned: ConfiguredView {
 	@Binding var selectedOptionId: Int
+	
+	private let tapSubject = PassthroughSubject<Algorithm, Never>()
+	var tap: AnyPublisher<Algorithm, Never> {
+		tapSubject.eraseToAnyPublisher()
+	}
 	private let option: Algorithm
 	
 	private var isSelected: Bool { selectedOptionId == option.id }
@@ -28,6 +39,8 @@ struct CardViewButtoned: View {
 					Spacer()
 					Button {
 						print("Expand")
+						tapSubject.send(option)
+						
 					} label: {
 						Image(systemName: "arrow.up.left.and.arrow.down.right")
 							.padding(4)
