@@ -70,7 +70,6 @@ struct QuestionDetailView: View {
 								
 								CardViewButtoned(option: option, selectedOptionId: $selectedOptionId)
 								.frame(minWidth: vStack.frame(in: .global).width, maxWidth: vStack.frame(in: .global).width, minHeight: vStack.size.height * 0.45)
-								
 							}
 							
 							Color.clear.frame(width: 1.0) // Gives the effect of contentInset, just enough to align the views considering the shadows
@@ -85,17 +84,17 @@ struct QuestionDetailView: View {
 				
 			}
 			.padding(EdgeInsets(top: 20.0, leading: 20.0, bottom: 20.0, trailing: 20.0))
+			// this .safeAreaInset allows you to place items in.. you guessed it.. the safe area
 			.safeAreaInset(edge: .bottom) {
-				// this .safeAreaInset allows you to place items in.. you guessed it.. the safe area
-				Button {
-					print("Hi")
+				NavigationLink {
+					QuestionDetailView(question)
 				} label: {
+					// aparently you need to add the frame to the Text in order for the button's tappable area to match it's size
 					Text("Continue")
-						.frame(maxWidth: .infinity, maxHeight: 52.0) // aparently you need to add the frame to the Text in order for the button's tappable area to match it's size
+						.frame(maxWidth: .infinity, maxHeight: 52.0)
 						.foregroundStyle(!optionSelected ? Color.disabledButtonForeground : .black)
 						.background(!optionSelected ? Color.disabledButtonBackground : Color.listItemBackground)
-				}
-				.disabled(!optionSelected)
+				}.disabled(!optionSelected)
 			}
 		}
 		.navigationTitle(question.title)
@@ -107,6 +106,8 @@ struct QuestionDetailView: View {
 
 struct QuestionDetailView_Previews: PreviewProvider {
     static var previews: some View {
+		NavigationStack {
 			QuestionDetailView(Question.makeExample())
+		}
     }
 }
