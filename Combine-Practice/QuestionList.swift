@@ -12,6 +12,7 @@ struct QuestionListView: View {
 	private let questions: [Question] = Bundle.main.decode([Question].self, from: "questions.json")
 	
 	@State private var addQuestionAlertVisible = false
+	@StateObject private var flowManager = QuestionFlowManager(Question.example)
 	
     var body: some View {
 			List(questionCards) { card in
@@ -25,12 +26,10 @@ struct QuestionListView: View {
 			.navigationBarTitleDisplayMode(.inline)
 			.navigationDestination(for: QuestionCard.self) { card in
 				let idx = questions.firstIndex(where: { $0.id == card.questionId }) ?? 0
-				QuestionDetailView(questions[idx])
+				QuestionDetailView(questions[idx], manager: flowManager)
 					.toolbar(.hidden, for: .tabBar)
 			}
 	}
-	
-	
 	
 }
 

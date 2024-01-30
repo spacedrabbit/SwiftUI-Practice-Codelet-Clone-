@@ -11,6 +11,8 @@
 		1418E05D2B548F2500D8547A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1418E05C2B548F2500D8547A /* Assets.xcassets */; };
 		1418E0602B548F2500D8547A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1418E05F2B548F2500D8547A /* Preview Assets.xcassets */; };
 		1448ED692B687C0600EA25B8 /* PagingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1448ED682B687C0600EA25B8 /* PagingHStack.swift */; };
+		1448ED6B2B69A4DE00EA25B8 /* QuestionFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1448ED6A2B69A4DE00EA25B8 /* QuestionFlowManager.swift */; };
+		1448ED6D2B69A54600EA25B8 /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1448ED6C2B69A54600EA25B8 /* UIScrollView+Extension.swift */; };
 		14AF198B2B5DC6BE006FBCDA /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF198A2B5DC6BE006FBCDA /* Algorithm.swift */; };
 		14AF198D2B5DCFB0006FBCDA /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF198C2B5DCFB0006FBCDA /* HomeTabView.swift */; };
 		14AF198F2B5DCFED006FBCDA /* QuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF198E2B5DCFED006FBCDA /* QuestionList.swift */; };
@@ -35,6 +37,8 @@
 		1418E05C2B548F2500D8547A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1418E05F2B548F2500D8547A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1448ED682B687C0600EA25B8 /* PagingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingHStack.swift; sourceTree = "<group>"; };
+		1448ED6A2B69A4DE00EA25B8 /* QuestionFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFlowManager.swift; sourceTree = "<group>"; };
+		1448ED6C2B69A54600EA25B8 /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		14AF198A2B5DC6BE006FBCDA /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		14AF198C2B5DCFB0006FBCDA /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		14AF198E2B5DCFED006FBCDA /* QuestionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionList.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			children = (
 				14AF19A02B601967006FBCDA /* Bundle+Extensions.swift */,
 				14AF19AC2B62DE7B006FBCDA /* Color+Extensions.swift */,
+				1448ED6C2B69A54600EA25B8 /* UIScrollView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 				14AF19A62B608E9C006FBCDA /* QuestionDetailTitleView.swift */,
 				14AF19A82B608F06006FBCDA /* CardView.swift */,
 				14AF19AE2B62E2E3006FBCDA /* CardViewButtoned.swift */,
+				1448ED6A2B69A4DE00EA25B8 /* QuestionFlowManager.swift */,
 			);
 			path = QuestionDetail;
 			sourceTree = "<group>";
@@ -232,6 +238,8 @@
 				14AF199C2B601900006FBCDA /* Category.swift in Sources */,
 				14AF19A72B608E9C006FBCDA /* QuestionDetailTitleView.swift in Sources */,
 				14AF19982B6018C5006FBCDA /* Question.swift in Sources */,
+				1448ED6D2B69A54600EA25B8 /* UIScrollView+Extension.swift in Sources */,
+				1448ED6B2B69A4DE00EA25B8 /* QuestionFlowManager.swift in Sources */,
 				14AF19AD2B62DE7B006FBCDA /* Color+Extensions.swift in Sources */,
 				14AF198D2B5DCFB0006FBCDA /* HomeTabView.swift in Sources */,
 				14AF199A2B6018DD006FBCDA /* QuestionCard.swift in Sources */,

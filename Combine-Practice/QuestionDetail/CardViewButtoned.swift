@@ -8,12 +8,6 @@
 import SwiftUI
 import Combine
 
-protocol ConfiguredView: View {
-	associatedtype ConfigureItem: Identifiable
-	
-	init(option: ConfigureItem, selectedOptionId: Binding<ConfigureItem.ID>)
-}
-
 struct CardViewButtoned: ConfiguredView {
 	@Binding var selectedOptionId: Int
 	
@@ -21,6 +15,7 @@ struct CardViewButtoned: ConfiguredView {
 	var tap: AnyPublisher<Algorithm, Never> {
 		tapSubject.eraseToAnyPublisher()
 	}
+	
 	private let option: Algorithm
 	
 	private var isSelected: Bool { selectedOptionId == option.id }
@@ -86,6 +81,15 @@ struct CardViewButtoned: ConfiguredView {
 	}
 }
 
+extension CardViewButtoned {
+	
+	func bindTap(to: AnySubscriber<Algorithm, Never>) -> Self {
+	   let copy = self
+	   copy.tap.subscribe(to)
+	   return copy
+	}
+	
+}
 
 struct CardViewButtoned_Previews: PreviewProvider {
     static var previews: some View {

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PagingHStack<Content: ConfiguredView, Item: Identifiable>: View {
+	// From https://medium.com/appcoda-tutorials/building-an-image-carousel-from-scratch-with-swiftui-a89e14c5fa12
+	
 	@ViewBuilder var content: (Item, Binding<Item.ID>) -> Content
 	@State private var currentIndex = 0
 	@GestureState private var dragOffset: CGFloat = 0.0
@@ -38,7 +40,6 @@ struct PagingHStack<Content: ConfiguredView, Item: Identifiable>: View {
 			.gesture(
 				DragGesture()
 					.updating(self.$dragOffset, body: { value, state, transaction in
-						print(dragOffset)
 						state = value.translation.width
 					})
 					.onEnded ({ value in
@@ -50,6 +51,12 @@ struct PagingHStack<Content: ConfiguredView, Item: Identifiable>: View {
 			)
 		}.animation(.interpolatingSpring(mass: 0.6, stiffness: 100, damping: 10, initialVelocity: 0.3), value: dragOffset)
     }
+}
+
+protocol ConfiguredView: View {
+	associatedtype ConfigureItem: Identifiable
+	
+	init(option: ConfigureItem, selectedOptionId: Binding<ConfigureItem.ID>)
 }
 
 struct PagingHStack_Previews: PreviewProvider {

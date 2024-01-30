@@ -7,27 +7,25 @@
 
 import SwiftUI
 import UIKit
-
-// Wow, this feels dirty but it totally works
-extension UIScrollView {
-	open override var clipsToBounds: Bool {
-		get { return false }
-		set { }
-	}
-}
+import Combine
+import Foundation
 
 struct QuestionDetailView: View {
 	@State var selectedOptionId: Int = -1
-	static let invalidOptionId: Int = -1
+	@State var showSheet: Bool = false
+	@ObservedObject var questionFlowManager: QuestionFlowManager
 	
+	static let invalidOptionId: Int = -1
+
 	private var optionSelected: Bool {
 		return selectedOptionId != Self.invalidOptionId
 	}
 	
 	private let question: Question
 	
-	init(_ question: Question) {
+	init(_ question: Question, manager: QuestionFlowManager) {
 		self.question = question
+		self.questionFlowManager = manager
 	}
 	
     var body: some View {
@@ -73,7 +71,7 @@ struct QuestionDetailView: View {
 			// this .safeAreaInset allows you to place items in.. you guessed it.. the safe area
 			.safeAreaInset(edge: .bottom) {
 				NavigationLink {
-					QuestionDetailView(question)
+					QuestionDetailView(question, manager: questionFlowManager)
 				} label: {
 					// aparently you need to add the frame to the Text in order for the button's tappable area to match it's size
 					Text("Continue")
@@ -85,15 +83,22 @@ struct QuestionDetailView: View {
 		}
 		.navigationTitle(question.title)
 		.navigationBarTitleDisplayMode(.inline)
+		.sheet(isPresented: $showSheet) {
+			showSheet = false
+		} content: {
+			Text("Kayyy")
+		}
     }
+	
 }
 
-
-
 struct QuestionDetailView_Previews: PreviewProvider {
-    static var previews: some View {
+    static let question = Question.makeExample()
+	static var manager = QuestionFlowManager(question)
+	
+	static var previews: some View {
 		NavigationStack {
-			QuestionDetailView(Question.makeExample())
+			QuestionDetailView(question, manager: manager)
 		}
     }
 }
