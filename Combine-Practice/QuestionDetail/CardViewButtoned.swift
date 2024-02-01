@@ -8,6 +8,15 @@
 import SwiftUI
 import Combine
 
+struct AlgorithmCodePresentationKey: PreferenceKey {
+	static var defaultValue: Int = -1
+	
+	static func reduce(value: inout Int, nextValue: () -> Int) {
+		value = nextValue()
+		print("Returning \(value) from Presentation key")
+	}
+}
+
 struct CardViewButtoned: ConfiguredView {
 	@Binding var selectedOptionId: Int
 	
@@ -34,14 +43,15 @@ struct CardViewButtoned: ConfiguredView {
 					Spacer()
 					Button {
 						print("Expand")
+						tap.map({ $0 })
 						tapSubject.send(option)
-						
 					} label: {
 						Image(systemName: "arrow.up.left.and.arrow.down.right")
 							.padding(4)
 							.clipShape(RoundedRectangle(cornerRadius: 4))
 							.overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.blue, lineWidth: 1))
 					}
+					.preference(key: AlgorithmCodePresentationKey.self, value: option.id)
 				}
 				.padding(.horizontal)
 				.frame(width: context.size.width, height: 60.0)
@@ -88,7 +98,7 @@ extension CardViewButtoned {
 	   copy.tap.subscribe(to)
 	   return copy
 	}
-	
+
 }
 
 struct CardViewButtoned_Previews: PreviewProvider {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Wow, this feels dirty but it totally works
 extension UIScrollView {

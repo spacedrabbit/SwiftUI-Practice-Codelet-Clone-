@@ -14,8 +14,11 @@ struct QuestionDetailView: View {
 	@State var selectedOptionId: Int = -1
 	@State var showSheet: Bool = false
 	@ObservedObject var questionFlowManager: QuestionFlowManager
+	@State var buttonSubscriber: AnySubscriber<Algorithm, Never> = AnySubscriber<Algorithm, Never>()
 	
 	static let invalidOptionId: Int = -1
+	@State private var displayingAlertForId: Int = -1
+	@State private var displayingAlgo: Algorithm = Algorithm.example
 
 	private var optionSelected: Bool {
 		return selectedOptionId != Self.invalidOptionId
@@ -26,6 +29,15 @@ struct QuestionDetailView: View {
 	init(_ question: Question, manager: QuestionFlowManager) {
 		self.question = question
 		self.questionFlowManager = manager
+
+		buttonSubscriber = AnySubscriber<Algorithm, Never>(receiveSubscription: { pass in
+			print("Pass? \(pass)")
+		}, receiveValue: { algo in
+			print("Algo: \(algo)")
+			return .unlimited
+		}, receiveCompletion: { fail in
+			print("Nah")
+		})
 	}
 	
     var body: some View {
@@ -61,6 +73,10 @@ struct QuestionDetailView: View {
 					
 					PagingHStack(items: question.algorithmOptions, selectedItem: $selectedOptionId) { item, binding in
 						CardViewButtoned(option: item, selectedOptionId: binding)
+						.bindTap(to: buttonSubscriber)
+//							.receivePassthrough { pass in
+//								pass.receive(subscriber: passthroughAlgo)
+//							}
 					}
 					.padding(.horizontal, -20.0)
 					.frame(height: vStack.size.height * 0.45)
@@ -72,21 +88,51 @@ struct QuestionDetailView: View {
 			.safeAreaInset(edge: .bottom) {
 				NavigationLink {
 					QuestionDetailView(question, manager: questionFlowManager)
+						.onAppear {
+							questionFlowManager.incrementStep()
+						}.onDisappear {
+							questionFlowManager.decrementStep()
+						}
 				} label: {
 					// aparently you need to add the frame to the Text in order for the button's tappable area to match it's size
 					Text("Continue")
 						.frame(maxWidth: .infinity, maxHeight: 52.0)
 						.foregroundStyle(!optionSelected ? Color.disabledButtonForeground : .black)
 						.background(!optionSelected ? Color.disabledButtonBackground : Color.listItemBackground)
-				}.disabled(!optionSelected)
+				}
+				.disabled(!optionSelected)
 			}
 		}
 		.navigationTitle(question.title)
 		.navigationBarTitleDisplayMode(.inline)
+		.onChange(of: selectedOptionId, perform: { val in
+			switch questionFlowManager.currentStep {
+			case .codeSelection:
+				print("Im observing the on change event for code selection")
+				questionFlowManager.codeSelection = val
+			case .detailSelection:
+				print("I'm observing the on change event for detail selection")
+				questionFlowManager.detailSelection = val
+			case .complexitySelection:
+				print("not applicable")
+			}
+		})
+		.onPreferenceChange(AlgorithmCodePresentationKey.self) { value in
+			print("Value Changed To: \(value)")
+			
+			showSheet = value > 0
+			if value != displayingAlertForId {
+				displayingAlertForId = value
+			}
+			
+		}
 		.sheet(isPresented: $showSheet) {
+			displayingAlertForId = -1
 			showSheet = false
 		} content: {
-			Text("Kayyy")
+			if displayingAlertForId != -1 {
+				Text(question.algorithmOptions[displayingAlertForId].code)
+			}
 		}
     }
 	

@@ -33,12 +33,16 @@ class QuestionFlowManager: ObservableObject {
 	}
 	
 	func incrementStep() {
+		print("increment? current: \(currentStep)")
 		guard let newStep = Step(rawValue: currentStep.rawValue + 1) else { return }
 		currentStep = newStep
+		print("increment? new: \(currentStep)")
 	}
 	
 	func decrementStep() {
+		print("decrement? current: \(currentStep)")
 		guard let newStep = Step(rawValue: currentStep.rawValue - 1) else { return }
 		currentStep = newStep
+		print("decrement? current: \(currentStep)")
 	}
 }
