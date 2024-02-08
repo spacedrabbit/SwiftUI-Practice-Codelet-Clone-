@@ -13,12 +13,10 @@ import Foundation
 struct QuestionDetailView: View {
 	@State var selectedOptionId: Int = -1
 	@State var showSheet: Bool = false
-	@ObservedObject var questionFlowManager: QuestionFlowManager
-	@State var buttonSubscriber: AnySubscriber<Algorithm, Never> = AnySubscriber<Algorithm, Never>()
+	@State var displayedAlertForOptionId: Int = -1
 	
+	@ObservedObject var questionFlowManager: QuestionFlowManager
 	static let invalidOptionId: Int = -1
-	@State private var displayingAlertForId: Int = -1
-	@State private var displayingAlgo: Algorithm = Algorithm.example
 
 	private var optionSelected: Bool {
 		return selectedOptionId != Self.invalidOptionId
@@ -29,54 +27,21 @@ struct QuestionDetailView: View {
 	init(_ question: Question, manager: QuestionFlowManager) {
 		self.question = question
 		self.questionFlowManager = manager
-
-		buttonSubscriber = AnySubscriber<Algorithm, Never>(receiveSubscription: { pass in
-			print("Pass? \(pass)")
-		}, receiveValue: { algo in
-			print("Algo: \(algo)")
-			return .unlimited
-		}, receiveCompletion: { fail in
-			print("Nah")
-		})
 	}
 	
     var body: some View {
 		Group {
 			GeometryReader { vStack in
 				VStack {
-					CardView {
-						QuestionDetailTitleView(question)
-						
-						Text(question.description)
-							.font(.subheadline)
-						
-						Text("Example")
-							.font(.headline)
-							.underline()
-						
-						Text(question.exampleCode)
-							.frame(maxWidth: .infinity, alignment: .leading) // this gives it the same width as it's container, and left aligns it
-							.padding()
-							.background(.blue)
-							.font(.caption.monospaced())
-							.cornerRadius(8.0)
-							.multilineTextAlignment(.leading)
-					}.frame(maxHeight: vStack.size.height * 0.45)
+					AlgorithmDetailCardView(question: question)
+						.frame(maxHeight: vStack.size.height * 0.45)
 					
 					Spacer(minLength: 20.0)
-					
-					Divider()
-						.overlay(Color.gray)
-						.padding(.horizontal)
-					
+					Divider().overlay(Color.gray).padding(.horizontal)
 					Spacer(minLength: 20.0)
 					
 					PagingHStack(items: question.algorithmOptions, selectedItem: $selectedOptionId) { item, binding in
-						CardViewButtoned(option: item, selectedOptionId: binding)
-						.bindTap(to: buttonSubscriber)
-//							.receivePassthrough { pass in
-//								pass.receive(subscriber: passthroughAlgo)
-//							}
+						CardViewButtoned(option: item, selectedOptionId: binding, expandedInfoOptionId: &displayedAlertForOptionId)
 					}
 					.padding(.horizontal, -20.0)
 					.frame(height: vStack.size.height * 0.45)
@@ -117,23 +82,6 @@ struct QuestionDetailView: View {
 				print("not applicable")
 			}
 		})
-		.onPreferenceChange(AlgorithmCodePresentationKey.self) { value in
-			print("Value Changed To: \(value)")
-			
-			showSheet = value > 0
-			if value != displayingAlertForId {
-				displayingAlertForId = value
-			}
-			
-		}
-		.sheet(isPresented: $showSheet) {
-			displayingAlertForId = -1
-			showSheet = false
-		} content: {
-			if displayingAlertForId != -1 {
-				Text(question.algorithmOptions[displayingAlertForId].code)
-			}
-		}
     }
 	
 }

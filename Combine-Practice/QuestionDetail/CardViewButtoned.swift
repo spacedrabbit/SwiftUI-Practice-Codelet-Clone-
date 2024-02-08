@@ -19,6 +19,8 @@ struct AlgorithmCodePresentationKey: PreferenceKey {
 
 struct CardViewButtoned: ConfiguredView {
 	@Binding var selectedOptionId: Int
+	@Binding var expandOptionId: Int
+	private var buttonPublisher: PassthroughSubject<Int, Never>
 	
 	private let tapSubject = PassthroughSubject<Algorithm, Never>()
 	var tap: AnyPublisher<Algorithm, Never> {
@@ -32,6 +34,13 @@ struct CardViewButtoned: ConfiguredView {
 	init(option: Algorithm, selectedOptionId: Binding<Int>) {
 		self.option = option
 		self._selectedOptionId = selectedOptionId
+
+	}
+	
+	init(option: Algorithm, selectedOptionId: Binding<Int>, expandedInfoOptionId: Binding<Int>) {
+		self.option = option
+		self._selectedOptionId = selectedOptionId
+		self._expandOptionId = expandedInfoOptionId
 	}
 	
 	var body: some View {
@@ -42,16 +51,13 @@ struct CardViewButtoned: ConfiguredView {
 					
 					Spacer()
 					Button {
-						print("Expand")
-						tap.map({ $0 })
-						tapSubject.send(option)
+						expandOptionId = option.id
 					} label: {
 						Image(systemName: "arrow.up.left.and.arrow.down.right")
 							.padding(4)
 							.clipShape(RoundedRectangle(cornerRadius: 4))
 							.overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.blue, lineWidth: 1))
 					}
-					.preference(key: AlgorithmCodePresentationKey.self, value: option.id)
 				}
 				.padding(.horizontal)
 				.frame(width: context.size.width, height: 60.0)

@@ -7,6 +7,33 @@
 
 import SwiftUI
 
+struct AlgorithmDetailCardView: View {
+	let question: Question
+	
+	var body: some View {
+		CardView {
+			QuestionDetailTitleView(question)
+			
+			Text(question.description)
+				.font(.subheadline)
+			
+			Text("Example")
+				.font(.headline)
+				.underline()
+			
+			Text(question.exampleCode)
+				.frame(maxWidth: .infinity, alignment: .leading) // this gives it the same width as it's container, and left aligns it
+				.padding()
+				.background(.blue)
+				.font(.caption.monospaced())
+				.cornerRadius(8.0)
+				.multilineTextAlignment(.leading)
+		}
+		
+	}
+	
+}
+
 struct CardView<Content: View>: View {
 	@ViewBuilder var content: () -> Content
 	@State var backgroundColor: Color = .white
